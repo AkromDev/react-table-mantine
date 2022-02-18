@@ -7,7 +7,6 @@ import {
   useTable
 } from "react-table";
 import {
-  Box,
   Checkbox,
   createStyles,
   Divider,
@@ -73,7 +72,7 @@ const selectionHook = (hook, selection) => {
   }
 };
 
-export const ReactTable = ({
+export const DataTable = ({
   columns,
   data = [],
   serverSideDataSource = false,
@@ -208,7 +207,6 @@ export const ReactTable = ({
 
   const renderRow = (rows) =>
     rows.map((row, i) => {
-      console.log({ rows });
       prepareRow(row);
       return (
         <tr {...row.getRowProps({ onClick: (e) => handleRowClick(e, row) })}>
