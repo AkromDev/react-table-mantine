@@ -1,2 +1,2 @@
-export { ReactTable } from "./DataGrid";
+export { DataTable } from "./DataTable";
 export * from "./Filters";

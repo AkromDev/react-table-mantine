@@ -134,7 +134,7 @@ export const DataTable = ({
     page,
     gotoPage,
     setPageSize,
-    state: { pageIndex, pageSize, sortBy, filters }
+    state: { pageIndex, pageSize, sortBy, filters, selectedRowIds }
   } = tableOptions;
 
   useEffect(() => {
@@ -267,6 +267,7 @@ export const DataTable = ({
           </Group>
         </>
       )}
+      <p>Selected rows : <pre>{JSON.stringify(selectedRowIds, null, 2)}</pre></p>
     </div>
   );
 };

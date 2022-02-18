@@ -1,8 +1,10 @@
-import { Box } from "@mantine/core";
+import { Box, Menu } from "@mantine/core";
+import { PinRightIcon, TrashIcon } from '@modulz/radix-icons';
 import { useEffect, useState } from "react";
-import { DateFilter, DataTable } from "./DataTable";
+import { DataTable, DateFilter } from "./DataTable";
 
-const AllFetchedOnce = () => {
+
+const AllFetchedOnceMore = () => {
   const [data, setData] = useState([]);
 
   const [loading, toggleLoading] = useState(false);
@@ -31,7 +33,7 @@ const AllFetchedOnce = () => {
     <Box sx={(t) => ({ height: "100%", padding: t.spacing.lg })}>
       <DataTable
         columns={[
-          { accessor: "id", Header: "Id" },
+          { accessor: "id", Header: "Id", Filter: () => null },
           {
             accessor: "postId",
             Header: "Post Id",
@@ -39,12 +41,18 @@ const AllFetchedOnce = () => {
             filter: "dateFilter"
           },
           { accessor: "name", Header: "Name" },
-          { accessor: "email", Header: "Email Address" }
+          { accessor: "email", Header: "Email Address" },
+          {
+        Header: "Actions",
+        accessor: "progress",
+        Cell: ({ cell }) => <ActionMenu row={cell.row}/>
+      }
         ]}
         data={data}
         loading={loading}
         pageCount={pageCount}
         total={total}
+        selection
         stickyHeader
         sorting
         pagination
@@ -54,4 +62,13 @@ const AllFetchedOnce = () => {
   );
 };
 
-export default AllFetchedOnce;
+export default AllFetchedOnceMore;
+
+function ActionMenu({row}) {
+  return (
+    <Menu sx={{zIndex: 999}} onClick={(e) => e.stopPropagation()} size='xl'>
+      <Menu.Item icon={<PinRightIcon />} onClick={() => alert('Edit ' + row.id)}>Edit</Menu.Item>,
+      <Menu.Item color="red" icon={<TrashIcon />}>Delete</Menu.Item>
+    </Menu>
+  );
+}

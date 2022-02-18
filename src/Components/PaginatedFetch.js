@@ -1,6 +1,6 @@
 import { Box } from "@mantine/core";
 import { useCallback, useRef, useState } from "react";
-import { DateFilter, ReactTable } from "./ReactTable";
+import { DateFilter, DataTable } from "./DataTable";
 
 const PaginatedFetch = () => {
   const [data, setData] = useState([]);
@@ -44,7 +44,7 @@ const PaginatedFetch = () => {
 
   return (
     <Box sx={(t) => ({ height: "100%", padding: t.spacing.lg })}>
-      <ReactTable
+      <DataTable
         columns={[
           { accessor: "id", Header: "Id" },
           {
@@ -59,7 +59,6 @@ const PaginatedFetch = () => {
         data={data}
         fetchData={fetchData}
         serverSideDataSource
-        // selection
         loading={loading}
         pageCount={pageCount}
         total={total}
